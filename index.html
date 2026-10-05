@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Acervo: sistema web para gerenciamento dos livros de uma biblioteca. Etapa 1 — estrutura HTML da interface.">
+  <title>Acervo — Gerenciamento de Livros</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/script.js" defer></script>
+</head>
+<body>
+
+  <!-- ===== Identificação do sistema ===== -->
+  <header class="cabecalho" id="topo">
+    <div class="cabecalho__marca">
+      <img src="assets/img/livro.svg" alt="Ícone de um livro, logotipo do sistema Acervo" class="cabecalho__logo" width="48" height="64">
+      <hgroup>
+        <h1>Acervo</h1>
+        <p>Sistema de gerenciamento de livros da biblioteca</p>
+      </hgroup>
+    </div>
+
+    <!-- ===== Navegação principal ===== -->
+    <nav class="navegacao" aria-label="Navegação principal">
+      <ul class="navegacao__lista">
+        <li><a href="#cadastro">Cadastrar livro</a></li>
+        <li><a href="#pesquisa">Pesquisar</a></li>
+        <li><a href="#listagem">Livros cadastrados</a></li>
+        <li><a href="pages/detalhes.html">Detalhes do livro</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="conteudo">
+
+    <!-- ===== Cadastro da entidade principal (livros) ===== -->
+    <section id="cadastro" class="secao" aria-labelledby="titulo-cadastro">
+      <h2 id="titulo-cadastro">Cadastrar livro</h2>
+      <p class="secao__descricao">Preencha os dados abaixo para adicionar um novo livro ao acervo. Os campos marcados com * são obrigatórios.</p>
+
+      <form id="form-cadastro" class="formulario" action="#cadastro" method="get">
+        <fieldset>
+          <legend>Dados do livro</legend>
+
+          <div class="grade">
+            <div class="campo">
+              <label for="titulo">Título <span class="obrigatorio" aria-hidden="true">*</span></label>
+              <input type="text" id="titulo" name="titulo" placeholder="Ex.: Dom Casmurro" maxlength="150" required>
+            </div>
+
+            <div class="campo">
+              <label for="autor">Autor <span class="obrigatorio" aria-hidden="true">*</span></label>
+              <input type="text" id="autor" name="autor" placeholder="Ex.: Machado de Assis" maxlength="100" required>
+            </div>
+
+            <div class="campo">
+              <label for="isbn">ISBN</label>
+              <input type="text" id="isbn" name="isbn" placeholder="Ex.: 978-65-00000-01-5" maxlength="17">
+            </div>
+
+            <div class="campo">
+              <label for="genero">Gênero <span class="obrigatorio" aria-hidden="true">*</span></label>
+              <select id="genero" name="genero" required>
+                <option value="">Selecione um gênero</option>
+                <option value="romance">Romance</option>
+                <option value="ficcao-cientifica">Ficção científica</option>
+                <option value="tecnologia">Tecnologia</option>
+                <option value="historia">História</option>
+                <option value="infantojuvenil">Infantojuvenil</option>
+                <option value="poesia">Poesia</option>
+              </select>
+            </div>
+
+            <div class="campo">
+              <label for="ano">Ano de publicação <span class="obrigatorio" aria-hidden="true">*</span></label>
+              <input type="number" id="ano" name="ano" placeholder="Ex.: 1899" min="1450" max="2026" required>
+            </div>
+
+            <div class="campo">
+              <label for="paginas">Número de páginas</label>
+              <input type="number" id="paginas" name="paginas" placeholder="Ex.: 256" min="1" max="5000">
+            </div>
+
+            <div class="campo">
+              <label for="data-aquisicao">Data de aquisição</label>
+              <input type="date" id="data-aquisicao" name="data-aquisicao" min="2000-01-01" max="2026-12-31">
+            </div>
+
+            <div class="campo">
+              <label for="capa">Endereço da imagem da capa</label>
+              <input type="url" id="capa" name="capa" placeholder="https://exemplo.com/capa.jpg">
+            </div>
+
+            <div class="campo campo--inteiro">
+              <label for="sinopse">Sinopse</label>
+              <textarea id="sinopse" name="sinopse" rows="5" maxlength="1000" placeholder="Escreva um breve resumo do livro"></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Situação do exemplar <span class="obrigatorio" aria-hidden="true">*</span></legend>
+
+          <div class="opcoes">
+            <div class="opcao">
+              <input type="radio" id="status-disponivel" name="status" value="disponivel" checked required>
+              <label for="status-disponivel">Disponível</label>
+            </div>
+            <div class="opcao">
+              <input type="radio" id="status-emprestado" name="status" value="emprestado">
+              <label for="status-emprestado">Emprestado</label>
+            </div>
+            <div class="opcao">
+              <input type="radio" id="status-manutencao" name="status" value="manutencao">
+              <label for="status-manutencao">Em manutenção</label>
+            </div>
+          </div>
+
+          <div class="opcao opcao--destaque">
+            <input type="checkbox" id="destaque" name="destaque" value="sim">
+            <label for="destaque">Marcar como destaque do acervo</label>
+          </div>
+        </fieldset>
+
+        <div class="botoes">
+          <button type="submit" class="botao">Cadastrar livro</button>
+          <button type="reset" class="botao botao--secundario">Limpar formulário</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ===== Pesquisa, filtros e ordenação ===== -->
+    <section id="pesquisa" class="secao" aria-labelledby="titulo-pesquisa">
+      <h2 id="titulo-pesquisa">Pesquisar, filtrar e ordenar</h2>
+      <p class="secao__descricao">Use os campos abaixo para localizar livros no acervo.</p>
+
+      <form class="filtros" role="search" action="#listagem" method="get">
+        <div class="campo">
+          <label for="pesquisa-termo">Pesquisar por título ou autor</label>
+          <input type="search" id="pesquisa-termo" name="pesquisa" placeholder="Digite o título ou o autor">
+        </div>
+
+        <div class="campo">
+          <label for="filtro-genero">Gênero</label>
+          <select id="filtro-genero" name="filtro-genero">
+            <option value="">Todos os gêneros</option>
+            <option value="romance">Romance</option>
+            <option value="ficcao-cientifica">Ficção científica</option>
+            <option value="tecnologia">Tecnologia</option>
+            <option value="historia">História</option>
+            <option value="infantojuvenil">Infantojuvenil</option>
+            <option value="poesia">Poesia</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="filtro-status">Situação</label>
+          <select id="filtro-status" name="filtro-status">
+            <option value="">Todas as situações</option>
+            <option value="disponivel">Disponível</option>
+            <option value="emprestado">Emprestado</option>
+            <option value="manutencao">Em manutenção</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="ordenacao">Ordenar por</label>
+          <select id="ordenacao" name="ordenacao">
+            <option value="titulo-asc">Título (A–Z)</option>
+            <option value="titulo-desc">Título (Z–A)</option>
+            <option value="recentes">Mais recentes</option>
+            <option value="antigos">Mais antigos</option>
+          </select>
+        </div>
+
+        <div class="botoes">
+          <button type="submit" class="botao">Pesquisar</button>
+          <button type="reset" class="botao botao--secundario">Limpar filtros</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ===== Listagem dos livros cadastrados ===== -->
+    <section id="listagem" class="secao" aria-labelledby="titulo-listagem">
+      <h2 id="titulo-listagem">Livros cadastrados</h2>
+      <p class="secao__descricao">Exibindo 6 livros.</p>
+
+      <div class="tabela-container">
+        <table class="tabela">
+          <caption>Lista de livros cadastrados no acervo</caption>
+          <thead>
+            <tr>
+              <th scope="col">Código</th>
+              <th scope="col">Título</th>
+              <th scope="col">Autor</th>
+              <th scope="col">Gênero</th>
+              <th scope="col">Ano</th>
+              <th scope="col">Aquisição</th>
+              <th scope="col">Situação</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>LIV-001</td>
+              <th scope="row">Dom Casmurro</th>
+              <td>Machado de Assis</td>
+              <td>Romance</td>
+              <td>1899</td>
+              <td><time datetime="2024-03-12">12/03/2024</time></td>
+              <td><span class="status status--disponivel">Disponível</span></td>
+              <td class="tabela__acoes">
+                <a href="pages/detalhes.html?id=LIV-001" class="botao botao--secundario botao--pequeno" aria-label="Ver detalhes de Dom Casmurro">Ver detalhes</a>
+                <button type="button" class="botao botao--editar botao--pequeno" aria-label="Editar Dom Casmurro">Editar</button>
+                <button type="button" class="botao botao--excluir botao--pequeno" aria-label="Excluir Dom Casmurro">Excluir</button>
+              </td>
+            </tr>
+            <tr>
+              <td>LIV-002</td>
+              <th scope="row">O Cortiço</th>
+              <td>Aluísio Azevedo</td>
+              <td>Romance</td>
+              <td>1890</td>
+              <td><time datetime="2024-05-20">20/05/2024</time></td>
+              <td><span class="status status--emprestado">Emprestado</span></td>
+              <td class="tabela__acoes">
+                <a href="pages/detalhes.html?id=LIV-002" class="botao botao--secundario botao--pequeno" aria-label="Ver detalhes de O Cortiço">Ver detalhes</a>
+                <button type="button" class="botao botao--editar botao--pequeno" aria-label="Editar O Cortiço">Editar</button>
+                <button type="button" class="botao botao--excluir botao--pequeno" aria-label="Excluir O Cortiço">Excluir</button>
+              </td>
+            </tr>
+            <tr>
+              <td>LIV-003</td>
+              <th scope="row">Vidas Secas</th>
+              <td>Graciliano Ramos</td>
+              <td>Romance</td>
+              <td>1938</td>
+              <td><time datetime="2025-01-08">08/01/2025</time></td>
+              <td><span class="status status--disponivel">Disponível</span></td>
+              <td class="tabela__acoes">
+                <a href="pages/detalhes.html?id=LIV-003" class="botao botao--secundario botao--pequeno" aria-label="Ver detalhes de Vidas Secas">Ver detalhes</a>
+                <button type="button" class="botao botao--editar botao--pequeno" aria-label="Editar Vidas Secas">Editar</button>
+                <button type="button" class="botao botao--excluir botao--pequeno" aria-label="Excluir Vidas Secas">Excluir</button>
+              </td>
+            </tr>
+            <tr>
+              <td>LIV-004</td>
+              <th scope="row">Código Limpo</th>
+              <td>Robert C. Martin</td>
+              <td>Tecnologia</td>
+              <td>2008</td>
+              <td><time datetime="2025-06-30">30/06/2025</time></td>
+              <td><span class="status status--emprestado">Emprestado</span></td>
+              <td class="tabela__acoes">
+                <a href="pages/detalhes.html?id=LIV-004" class="botao botao--secundario botao--pequeno" aria-label="Ver detalhes de Código Limpo">Ver detalhes</a>
+                <button type="button" class="botao botao--editar botao--pequeno" aria-label="Editar Código Limpo">Editar</button>
+                <button type="button" class="botao botao--excluir botao--pequeno" aria-label="Excluir Código Limpo">Excluir</button>
+              </td>
+            </tr>
+            <tr>
+              <td>LIV-005</td>
+              <th scope="row">Sapiens: Uma Breve História da Humanidade</th>
+              <td>Yuval Noah Harari</td>
+              <td>História</td>
+              <td>2011</td>
+              <td><time datetime="2025-09-14">14/09/2025</time></td>
+              <td><span class="status status--manutencao">Em manutenção</span></td>
+              <td class="tabela__acoes">
+                <a href="pages/detalhes.html?id=LIV-005" class="botao botao--secundario botao--pequeno" aria-label="Ver detalhes de Sapiens">Ver detalhes</a>
+                <button type="button" class="botao botao--editar botao--pequeno" aria-label="Editar Sapiens">Editar</button>
+                <button type="button" class="botao botao--excluir botao--pequeno" aria-label="Excluir Sapiens">Excluir</button>
+              </td>
+            </tr>
+            <tr>
+              <td>LIV-006</td>
+              <th scope="row">O Pequeno Príncipe</th>
+              <td>Antoine de Saint-Exupéry</td>
+              <td>Infantojuvenil</td>
+              <td>1943</td>
+              <td><time datetime="2026-02-03">03/02/2026</time></td>
+              <td><span class="status status--disponivel">Disponível</span></td>
+              <td class="tabela__acoes">
+                <a href="pages/detalhes.html?id=LIV-006" class="botao botao--secundario botao--pequeno" aria-label="Ver detalhes de O Pequeno Príncipe">Ver detalhes</a>
+                <button type="button" class="botao botao--editar botao--pequeno" aria-label="Editar O Pequeno Príncipe">Editar</button>
+                <button type="button" class="botao botao--excluir botao--pequeno" aria-label="Excluir O Pequeno Príncipe">Excluir</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== Informação complementar ===== -->
+    <aside class="secao resumo" aria-labelledby="titulo-resumo">
+      <h2 id="titulo-resumo">Resumo do acervo</h2>
+      <ul class="resumo__lista">
+        <li><span class="resumo__numero">6</span> livros cadastrados</li>
+        <li><span class="resumo__numero">3</span> disponíveis</li>
+        <li><span class="resumo__numero">2</span> emprestados</li>
+        <li><span class="resumo__numero">1</span> em manutenção</li>
+      </ul>
+    </aside>
+
+  </main>
+
+  <!-- ===== Rodapé ===== -->
+  <footer class="rodape">
+    <p>&copy; 2026 Acervo — Projeto acadêmico de Desenvolvimento Web (Etapa 1).</p>
+    <p><a href="#topo">Voltar ao topo</a></p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Detalhes de um livro cadastrado no sistema Acervo.">
+  <title>Dom Casmurro — Detalhes do livro | Acervo</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/script.js" defer></script>
+</head>
+<body>
+
+  <!-- ===== Identificação do sistema ===== -->
+  <header class="cabecalho" id="topo">
+    <div class="cabecalho__marca">
+      <img src="../assets/img/livro.svg" alt="Ícone de um livro, logotipo do sistema Acervo" class="cabecalho__logo" width="48" height="64">
+      <hgroup>
+        <h1>Acervo</h1>
+        <p>Sistema de gerenciamento de livros da biblioteca</p>
+      </hgroup>
+    </div>
+
+    <!-- ===== Navegação principal ===== -->
+    <nav class="navegacao" aria-label="Navegação principal">
+      <ul class="navegacao__lista">
+        <li><a href="../index.html#cadastro">Cadastrar livro</a></li>
+        <li><a href="../index.html#pesquisa">Pesquisar</a></li>
+        <li><a href="../index.html#listagem">Livros cadastrados</a></li>
+        <li><a href="detalhes.html" aria-current="page">Detalhes do livro</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="conteudo">
+
+    <!-- ===== Detalhes de um livro ===== -->
+    <article class="secao detalhes" aria-labelledby="titulo-livro">
+      <header>
+        <p class="detalhes__rotulo">Detalhes do livro</p>
+        <h2 id="titulo-livro">Dom Casmurro</h2>
+        <p class="detalhes__autor">Machado de Assis</p>
+      </header>
+
+      <div class="detalhes__corpo">
+        <figure class="detalhes__capa">
+          <img src="../assets/img/livro.svg" alt="Capa ilustrativa do livro Dom Casmurro" width="160" height="213">
+          <figcaption>Capa ilustrativa</figcaption>
+        </figure>
+
+        <dl class="detalhes__dados">
+          <div>
+            <dt>Código</dt>
+            <dd>LIV-001</dd>
+          </div>
+          <div>
+            <dt>ISBN</dt>
+            <dd>978-65-00000-01-5</dd>
+          </div>
+          <div>
+            <dt>Gênero</dt>
+            <dd>Romance</dd>
+          </div>
+          <div>
+            <dt>Ano de publicação</dt>
+            <dd>1899</dd>
+          </div>
+          <div>
+            <dt>Número de páginas</dt>
+            <dd>256</dd>
+          </div>
+          <div>
+            <dt>Data de aquisição</dt>
+            <dd><time datetime="2024-03-12">12/03/2024</time></dd>
+          </div>
+          <div>
+            <dt>Situação</dt>
+            <dd><span class="status status--disponivel">Disponível</span></dd>
+          </div>
+          <div>
+            <dt>Destaque do acervo</dt>
+            <dd>Sim</dd>
+          </div>
+        </dl>
+      </div>
+
+      <section class="detalhes__sinopse" aria-labelledby="titulo-sinopse">
+        <h3 id="titulo-sinopse">Sinopse</h3>
+        <p>Já idoso, Bento Santiago decide contar a própria história para tentar unir as pontas de sua vida. Ele relembra a infância no Rio de Janeiro, o amor de juventude por Capitu e o casamento, que passa a ser marcado por uma desconfiança crescente. Como tudo é narrado pelo próprio Bento, cabe ao leitor decidir até que ponto confiar na sua versão dos fatos.</p>
+      </section>
+
+      <footer class="detalhes__acoes botoes">
+        <button type="button" class="botao botao--editar">Editar livro</button>
+        <button type="button" class="botao botao--excluir">Excluir livro</button>
+        <a href="../index.html#listagem" class="botao botao--secundario">Voltar para a listagem</a>
+      </footer>
+    </article>
+
+    <!-- ===== Informação complementar ===== -->
+    <aside class="secao" aria-labelledby="titulo-historico">
+      <h2 id="titulo-historico">Histórico de empréstimos</h2>
+      <ol class="historico">
+        <li><time datetime="2024-04-02">02/04/2024</time> a <time datetime="2024-04-16">16/04/2024</time> — Ana Ribeiro</li>
+        <li><time datetime="2024-08-10">10/08/2024</time> a <time datetime="2024-08-24">24/08/2024</time> — Carlos Menezes</li>
+        <li><time datetime="2025-03-05">05/03/2025</time> a <time datetime="2025-03-19">19/03/2025</time> — Juliana Prado</li>
+      </ol>
+    </aside>
+
+  </main>
+
+  <!-- ===== Rodapé ===== -->
+  <footer class="rodape">
+    <p>&copy; 2026 Acervo — Projeto acadêmico de Desenvolvimento Web (Etapa 1).</p>
+    <p><a href="#topo">Voltar ao topo</a></p>
+  </footer>
+
+</body>
+</html>
