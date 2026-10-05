@@ -60,8 +60,8 @@ Não é necessário instalar nada.
 
 ## Link da aplicação (GitHub Pages)
 
-[COLE AQUI O LINK DO GITHUB PAGES]
+https://jzn77.github.io/trabalhodiwjoaofaria/
 
 ## Autor
 
-[SEU NOME] — PUC Minas
+Joao Pedro Lemos Faria
